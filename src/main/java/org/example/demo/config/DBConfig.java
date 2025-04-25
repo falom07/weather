@@ -52,8 +52,9 @@ public class DBConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("org.example.Entity");
+        sessionFactory.setPackagesToScan("org/example/demo/Entity");
         sessionFactory.setHibernateProperties(getProperties());
+
         return sessionFactory;
     }
 

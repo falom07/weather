@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+.card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+}
+.card div{
+    padding-bottom: 20px;
+}
