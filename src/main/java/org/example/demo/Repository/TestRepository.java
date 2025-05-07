@@ -1,6 +1,6 @@
 package org.example.demo.Repository;
 
-import org.example.demo.Entity.User;
+import org.example.demo.Entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,30 +13,34 @@ public class TestRepository {
 
     private final SessionFactory sessionFactory;
 
+
     @Autowired
     public TestRepository(SessionFactory sessionFactory) {
+
         this.sessionFactory = sessionFactory;
     }
 
-    public void save(User user) {
-        getCurrentSession().persist(user);
+    public void save(UserEntity userEntity) {
+        getCurrentSession().persist(userEntity);
     }
 
-    public User findById(Long id) {
-        return getCurrentSession().get(User.class, id);
+    public UserEntity findById(Long id) {
+        return getCurrentSession().get(UserEntity.class, id);
     }
 
-    public List<User> findAll() {
+    public List<UserEntity> findAll() {
         return getCurrentSession()
-                .createQuery("from User", User.class)
+                .createQuery("from UserEntity", UserEntity.class)
                 .getResultList();
     }
 
-    public void delete(User user) {
-        getCurrentSession().remove(user);
+    public void delete(UserEntity userEntity) {
+        getCurrentSession().remove(userEntity);
     }
 
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
+
+
 }

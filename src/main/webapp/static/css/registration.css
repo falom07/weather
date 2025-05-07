@@ -13,3 +13,15 @@ body {
 .card div{
     padding-bottom: 20px;
 }
+.error {
+    border: red solid 1px;
+}
+.errorText {
+    color: red;
+    height: 10px;
+}
+.link{
+    padding-top:3%;
+    text-align: center;
+}
+

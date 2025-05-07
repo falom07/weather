@@ -3,14 +3,13 @@ package org.example.demo.controllers;
 import org.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/sdf")
 public class ControllerView {
 
 
@@ -21,39 +20,23 @@ public class ControllerView {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("message", "Добро пожаловать!");
-//        userService.getAllUsers().forEach(System.out::println);
-        System.out.println(userService.getOne().getLogin());
-        System.out.println("hi");
-        return "index"; // index.html в /WEB-INF/templates/
+    @GetMapping("/home")
+    public String home() {
+
+        return "mainPage";
     }
 
-    @GetMapping("/registraion")
-    public String registraion(Model model) {
-        model.addAttribute("message", "<UNK> <UNK>!");
-        return "Registration";
-    }
-
-    @PostMapping("/register")
-    public String registraion2(Model model) {
-        System.out.println("hi");
-        return "Registration";
+    @GetMapping("/test/{id}")
+    @ResponseBody
+    public String test(@PathVariable("id") String id) {
+        System.out.println(id);
+        return "home";
     }
 
 
-//    @GetMapping
-//    public String index() {
-//        System.out.println("index\n\n\n");
-//        return "index";
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET,path = "/hello")
-//    public ModelAndView he(ModelAndView modelAndView){
-//        modelAndView.setViewName("index");
-//        System.out.println("index\n\n\n");
-//        return modelAndView;
-//    }
+
+
+
+
 
 }

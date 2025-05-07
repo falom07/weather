@@ -1,26 +1,43 @@
 package org.example.demo.controllers;
 
-import org.example.demo.DTO.UserRegistrationDTO;
-import org.example.demo.Entity.User;
+import jakarta.validation.Valid;
+import org.example.demo.DTO.UserSignUpDTO;
+import org.example.demo.Service.SignService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
-    @GetMapping("/registration")
-    public String registrationForm(Model model) {
-        model.addAttribute("user", new UserRegistrationDTO());
+    private final SignService signService;
+
+
+    @Autowired
+    public RegistrationController(SignService signService) {
+        this.signService = signService;
+    }
+
+    @GetMapping()
+    public String showForm(Model model) {
+        model.addAttribute("user", new UserSignUpDTO());
         return "Registration";
     }
 
-    @PostMapping("/registration")
-    public String registrationUser(@ModelAttribute("user") UserRegistrationDTO user) {
-        //todo check and save and validate
-        System.out.println(user);
-        return "redirect:/registration";
+    @PostMapping()
+    public String handlerForm(@Valid @ModelAttribute("user") UserSignUpDTO user, BindingResult bindingResult) {
+
+
+        if(signService.isSignUpFormCorrect(bindingResult, user)) {
+            Long loginId = signService.saveUser(user);
+
+            return "redirect:/session/create/" + loginId;
+        }else {
+            return "Registration";
+        }
     }
+
 }

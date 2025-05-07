@@ -6,24 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
-import java.util.UUID;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "sessions")
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Session {
+@Table(name = "locations")
+public class LocationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
+    private String name;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
 
-    @Column(name = "expires_at")
-    private ZonedDateTime expiresAt;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity userEntity;
 }

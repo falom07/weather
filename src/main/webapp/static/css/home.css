@@ -1,0 +1,61 @@
+header {
+    width: 100%;
+
+    background-color: #dadada;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+
+}
+
+#weatherApp {
+    margin: 15px 10px 10px;
+    font-size: x-large;
+}
+
+#login {
+    display: flex;
+}
+
+#logout {
+    margin: 10px;
+}
+
+#username {
+    margin: 15px 10px 10px;
+    color: #575754;
+}
+.weather-cards{
+    padding-top: 20px;
+    height: 80vh;
+    margin-left: 10vh;
+    display: flex;
+    gap: 10px;
+}
+.weather-card{
+    height: 35vh;
+}
+img{
+    position: absolute;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.deleteCard{
+    width: 20px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+.cardBody{
+    position: absolute;
+    text-align: left;
+    bottom: 0;
+}
+.cardBody div{
+    padding-bottom: 5px ;
+}
+.temperature,.place{
+    font-size: xx-large;
+}
+

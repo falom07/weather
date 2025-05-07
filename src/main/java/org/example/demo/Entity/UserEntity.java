@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Builder
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,10 +25,11 @@ public class User {
 
     private String password;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
-    List<Session> sessions = new ArrayList<>();
+    @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL,orphanRemoval = true)
+    List<SessionEntity> sessionEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
-    List<Location> locations = new ArrayList<>();
+    @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL,orphanRemoval = true)
+    List<LocationEntity> locationEntities = new ArrayList<>();
+
 
 }
